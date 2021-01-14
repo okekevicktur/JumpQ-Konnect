@@ -1,0 +1,3 @@
+C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\bin\Release\JumpQ_TestApp.exe.config
+C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\Release\Interop.QBPOSFC4Lib.dll
+C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\Release\JumpQ_TestApp.csproj.ResolveComReference.cache
