@@ -35,7 +35,6 @@ C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_Test
 C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\bin\x64\Release\zxing.presentation.xml
 C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\x64\Release\Interop.QBPOSFC4Lib.dll
 C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\x64\Release\JumpQ_TestApp.csproj.ResolveComReference.cache
-C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\x64\Release\JumpQ_TestApp.AddSalesItem.resources
 C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\x64\Release\JumpQ_TestApp.Custom_Settings.resources
 C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\x64\Release\JumpQ_TestApp.DisplayXML.resources
 C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\x64\Release\JumpQ_TestApp.Form1.resources
@@ -50,4 +49,12 @@ C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_Test
 C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\bin\x64\Release\JumpQ_TestApp.exe.config
 C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\bin\x64\Release\JumpQ_TestApp.exe
 C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\bin\x64\Release\JumpQ_TestApp.pdb
-C:\Users\piedTech\documents\visual studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\x64\Release\JumpQ_TestApp.csprojResolveAssemblyReference.cache
+C:\Users\piedTech\Documents\Visual Studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\bin\x64\Release\Bunifu.UI.WinForms.BunifuTextbox.dll
+C:\Users\piedTech\Documents\Visual Studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\bin\x64\Release\FubarCoder.RestSharp.Portable.Core.dll
+C:\Users\piedTech\Documents\Visual Studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\bin\x64\Release\RestSharp.Serializers.Newtonsoft.Json.dll
+C:\Users\piedTech\Documents\Visual Studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\bin\x64\Release\FubarCoder.RestSharp.Portable.Core.xml
+C:\Users\piedTech\Documents\Visual Studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\x64\Release\JumpQ_TestApp.MainForm.resources
+C:\Users\piedTech\Documents\Visual Studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\x64\Release\JumpQ_TestApp.Login.resources
+C:\Users\piedTech\Documents\Visual Studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\bin\x64\Release\Interop.WIA.dll
+C:\Users\piedTech\Documents\Visual Studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\x64\Release\Interop.WIA.dll
+C:\Users\piedTech\Documents\Visual Studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\x64\Release\JumpQ_TestApp.csprojResolveAssemblyReference.cache

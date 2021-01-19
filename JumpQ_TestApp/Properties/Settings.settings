@@ -17,5 +17,23 @@
     <Setting Name="CustomerID" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="ApiToken" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Username" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Comments" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Sales Transaction Successful</Value>
+    </Setting>
+    <Setting Name="Cashier" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Cashier 1</Value>
+    </Setting>
+    <Setting Name="SalesRecieptType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Sales</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

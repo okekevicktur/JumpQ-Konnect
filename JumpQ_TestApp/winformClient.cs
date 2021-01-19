@@ -16,18 +16,7 @@ namespace JumpQ_TestApp
                 public int store_branch { get; set; }
                 public string api_token { get; set; }
 
-                //public string Lastname { get; set; }
-                //public string phone { get; set; }
-                //public int Password { get; set; }
-        
-        
-    //    "name": "Joel Johnson",
-    //"email": "joel.marcus@gmail.com",
-    //"username": "joel12",
-    //"phone": "07011903917",
-    //"store_branch": "Infinix Phone Company",
-    //"api_token": "pCj5w66Z6p0octOjpT0rrEOmIUfKqbhTc6NmdqPIYBHO96spmSreZXKd3hOH"
-       
+              
 
     }
 
@@ -47,19 +36,20 @@ namespace JumpQ_TestApp
         public User user { get; set; }
     }
 
+    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
     public class Product
     {
-        public string name { get; set; }
-        public int price { get; set; }
-        public int cost_price { get; set; }
-        public string barcode { get; set; }
-        public string description { get; set; }
-        public int quantity { get; set; }
+        public string name;
+        public int price;
+        public int cost_price;
+        public string barcode;
+        public string description;
+        public int quantity;
     }
 
-    public class RootProduct
+    public class Root2
     {
-        public List<Product> products { get; set; }
+        public List<Product> products{ get; set; }
     }
 
 }

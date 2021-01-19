@@ -99,7 +99,11 @@ namespace JumpQ_TestApp
             string password = txtPassword.Text;
 
             ApiOperations ops = new ApiOperations();
+
+          //  RootProduct product = ops.RegisterProducts();
             winformClient user = ops.AuthenticateUser(username, password);
+
+
             if (user == null)
             {
                 MessageBox.Show("Invalid username or password");

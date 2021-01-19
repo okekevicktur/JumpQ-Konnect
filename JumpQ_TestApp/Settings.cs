@@ -120,7 +120,7 @@ namespace JumpQ_TestApp
         {
             if (_cn == null || _cn.State == ConnectionState.Closed)
             {
-                AddSalesItem Ads = new AddSalesItem();
+                MainForm Ads = new MainForm();
                 btnConnect_Click(null, null);
             }
             

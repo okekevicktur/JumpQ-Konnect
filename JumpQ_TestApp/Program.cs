@@ -16,7 +16,7 @@ namespace JumpQ_TestApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AddSalesItem());
+            Application.Run(new Login());
         }
     }
 }

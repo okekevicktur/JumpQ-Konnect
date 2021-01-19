@@ -95,9 +95,16 @@
     <Reference Include="Bunifu.UI.WinForms.BunifuButton">
       <HintPath>..\..\..\..\PiedTech\Softwares\Bunifu UI WinForms 1.8.0.1\Bunifu UI WinForms 1.8.0.1\Bunifu.UI.WinForms.BunifuButton.dll</HintPath>
     </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuTextbox">
+      <HintPath>..\..\Jamb360\Jamb360\bin\x64\Debug\Bunifu.UI.WinForms.BunifuTextbox.dll</HintPath>
+    </Reference>
     <Reference Include="Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\paymentMgtSys\paymentMgtSys\Bunifu_UI_v1.5.3.dll</HintPath>
+    </Reference>
+    <Reference Include="FubarCoder.RestSharp.Portable.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.Core.4.0.8\lib\net45\FubarCoder.RestSharp.Portable.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Interop.qbposfc4, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31d8aec643e18259">
       <SpecificVersion>False</SpecificVersion>
@@ -126,6 +133,10 @@
     </Reference>
     <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp.Serializers.Newtonsoft.Json, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.Newtonsoft.Json.1.5.1\lib\net452\RestSharp.Serializers.Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Syncfusion.Core.WinForms, Version=18.2450.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
@@ -199,11 +210,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddSalesItem.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddSalesItem.Designer.cs">
-      <DependentUpon>AddSalesItem.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ApiHelper.cs" />
     <Compile Include="ApiOperations.cs" />
@@ -231,16 +242,23 @@
     <Compile Include="FormSelectSV.Designer.cs">
       <DependentUpon>FormSelectSV.cs</DependentUpon>
     </Compile>
-    <Compile Include="JumpQDataModel.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestClient.cs" />
+    <Compile Include="Scanner.cs" />
     <Compile Include="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettingsModel.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="TestClient.cs">
       <SubType>Form</SubType>
@@ -248,10 +266,9 @@
     <Compile Include="TestClient.Designer.cs">
       <DependentUpon>TestClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Token.cs" />
     <Compile Include="winformClient.cs" />
-    <EmbeddedResource Include="AddSalesItem.resx">
-      <DependentUpon>AddSalesItem.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom Settings.resx">
       <DependentUpon>Custom Settings.cs</DependentUpon>
@@ -264,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSelectSV.resx">
       <DependentUpon>FormSelectSV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -304,6 +324,15 @@
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WIA">
+      <Guid>{94A0E92D-43C0-494E-AC29-FD45948A5221}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
   <ItemGroup>
