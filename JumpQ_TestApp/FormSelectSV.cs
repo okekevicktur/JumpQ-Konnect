@@ -20,10 +20,10 @@ namespace JumpQ_TestApp
         public string connString = "";
         public bool fcon;
         public int currentVersion;
-        public Form1 vAdd;
-        public FormSelectSV(Form1 vendorAdd)
+       // public Form1 vAdd;
+        public FormSelectSV()
         {
-            vAdd = vendorAdd;
+           // vAdd = vendorAdd;
             InitializeComponent();
         }
         //bool
@@ -131,7 +131,7 @@ namespace JumpQ_TestApp
             pos1 = text1.IndexOf("-");
             companyName = text1.Substring(0, pos1).Trim();
             connString = "Computer Name=" + serverName + ";Company Data=" + companyName;
-            string[] versions = null;
+            //string[] versions = null;
             //versions = vAdd.rp.POSVersions(serverName, companyName, false) as string[];
             //for (int i = 0; i < versions.Length; i++)
             //{
@@ -141,7 +141,7 @@ namespace JumpQ_TestApp
 
         private void FormSelectSV_FormClosed(object sender, FormClosedEventArgs e)
         {
-            vAdd.processRequest();
+           // vAdd.processRequest();
         }
         private void setConnString()
         {

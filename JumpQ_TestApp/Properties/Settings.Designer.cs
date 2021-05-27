@@ -154,5 +154,17 @@ namespace JumpQ_TestApp.Properties {
                 this["SalesRecieptType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public byte Logo {
+            get {
+                return ((byte)(this["Logo"]));
+            }
+            set {
+                this["Logo"] = value;
+            }
+        }
     }
 }

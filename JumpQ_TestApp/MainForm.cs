@@ -20,15 +20,13 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json;
 using System.Security.Claims;
-using Owin;
 using System.Web.Http;
+using WIA;
 using System.Net.Http.Headers;
 using System.Collections;
 using RestSharp;
-using RestSharp.Serializers.Newtonsoft;
-using RestSharp.Authenticators;
-using WIA;
 using System.Drawing.Printing;
+using QBPOSFC4Lib;
 
 
 
@@ -38,8 +36,8 @@ namespace JumpQ_TestApp
     public partial class MainForm : Form
     {
         #region
-        private int maxNumber = 0;
-        private int correctNumber = 0;
+      //  private int maxNumber = 0;
+        //private int correctNumber = 0;
         private OdbcConnection _cn;
         public MainForm()
         {
@@ -49,58 +47,17 @@ namespace JumpQ_TestApp
         }
 
   
-        async static void Getrequest( string url)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                using (HttpResponseMessage response = await client.GetAsync(url))
-                {
-                    using (HttpContent content = response.Content)
-                    {
-                       // string mycontent = await content.ReadAsStringAsync();
-                       // richTextBox1.Text = mycontent;
-                        HttpContentHeaders headers = content.Headers;
-
-                        MessageBox.Show(headers.ToString());
-                    }
-                }
-            }
-        }
-
-
-        async static void Postrequest(string url)
-        {
-            System.Collections.Generic.IEnumerable<KeyValuePair<string, string> > queries = new List<KeyValuePair<string, string >>()
-            {
-                new KeyValuePair<string, string>("quer1","james"),
-                new KeyValuePair<string, string>("quer2","polinium"),
-            }  ;
-
-            HttpContent q = new FormUrlEncodedContent(queries);
-            using (HttpClient client = new HttpClient())
-            {
-                using (HttpResponseMessage response = await client.PostAsync(url,q))
-                {
-                    using (HttpContent content = response.Content)
-                    {
-                        string mycontent = await content.ReadAsStringAsync();
-                        // richTextBox1.Text = mycontent;
-                        HttpContentHeaders headers = content.Headers;
-
-                        MessageBox.Show(mycontent);
-                    }
-                }
-            }
-        }
-
-
+    
 
 
 
        #endregion
 
         #region  //BArcodeJob Encapsulation
-        SQLiteConnection con = new SQLiteConnection(@"Data Source=.\JumpQKonnect.db; Version= 3;");
+     
+
+      SQLiteConnection con = new SQLiteConnection(@"Data Source=.\JumpQ_Konnect.db; Version= 3;");
+        // SQLiteConnection con = new SQLiteConnection(@"data source=C:\Users\piedTech\Documents\Visual Studio 2013\Projects\JumpQ_TestApp\JumpQ_Konnect.db; Version= 3;");
         FilterInfoCollection filterInfoCollection;
         VideoCaptureDevice captureDevice;
 
@@ -112,8 +69,7 @@ namespace JumpQ_TestApp
         List<string> BlockContent = new List<string>();
         List<string> jstRfid = new List<string>();
      
-        private ArrayList scannerList;
-        private Scanner activeScanner;
+ 
 
 
         //cONSIDER ADDING THIS PARAMETER TO DEFAULT SETTING
@@ -146,25 +102,38 @@ namespace JumpQ_TestApp
 
                 if (cboListOfDSN.Items.Count > 0)
                 {
-                    foreach (string item in cboListOfDSN.Items)
+                    if (cboListOfDSN.Items.Contains("QuickBooks POS Data"))
                     {
-                        if (item == "QuickBooks Data")
-                        {
-                            cboListOfDSN.Text = item;
-                            return;
-                        }
-                        if (item == "QuickBooks Data POS")
-                        {
-                            cboListOfDSN.Text = item;
-                            return;
-                        }
-                        if (item == "QuickBooks Data Online")
-                        {
-                            cboListOfDSN.Text = item;
-                            return;
-                        }
+                        int index = cboListOfDSN.Items.IndexOf("QuickBooks POS Data");
+                        cboListOfDSN.SelectedIndex = index;
                     }
-                    cboListOfDSN.SelectedIndex = 0;
+                    else
+                    {
+                        cboListOfDSN.SelectedIndex = 0;
+
+                    }
+
+
+
+
+                    //foreach (string item in cboListOfDSN.Items)
+                    //{
+                    //    if (item == "QuickBooks Data")
+                    //    {
+                    //        cboListOfDSN.Text = item;
+                    //        return;
+                    //    }
+                    //    if (item == "QuickBooks Data POS")
+                    //    {
+                    //        cboListOfDSN.Text = item;
+                    //        return;
+                    //    }
+                    //    if (item == "QuickBooks Data Online")
+                    //    {
+                    //        cboListOfDSN.Text = item;
+                    //        return;
+                    //    }
+                    //}
                 }
             }
 
@@ -200,6 +169,7 @@ namespace JumpQ_TestApp
             salesRecieptModel.CashierName = Properties.Settings.Default.Cashier;
             if (salesRecieptModel.CustomerID == string.Empty)
             {
+
                 btnSet_Click(null, null);
             }
             //  MessageBox.Show(CustomerID);
@@ -231,6 +201,11 @@ namespace JumpQ_TestApp
                 {
                     _cn.Close();
                 }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                con.Open();
                // _cn.Open();
                 Application.DoEvents();
             }
@@ -245,13 +220,15 @@ namespace JumpQ_TestApp
       
 
         //tHIS SHOULD ONLY INITIATE WHEN PRODUCTS HAVE BEEN VERIFIED
-       
 
-        private void InsertSalesReceiptLineItem(string customerName, string comments, string cashierName, string salesReceiptType, string itemName, int quanity, int rate, int tenderAmount)
+        string tnx = "tnxID00";
+        string ReferenceID = string.Empty;
+        private void InsertSalesReceiptLineItem(  string customerName, string comments, string cashierName, string salesReceiptType, string itemName, int quanity, int rate, int tenderAmount)
         {
             string query =
-                    string.Format("Insert Into SalesReceiptItem (CustomerListId, Comments, Cashier, SalesReceiptType, SalesReceiptItemListId,  SalesReceiptItemQty, SalesReceiptItemPrice, TenderCash01TenderAmount) Values ('{0}','{1}','{2}','{3}','{4}',{5},{6},{7})", customerName, comments, cashierName, salesReceiptType, itemName, quanity, rate, tenderAmount);
-             
+                    string.Format("Insert Into SalesReceiptItem ( CustomerListId, Comments, Cashier, SalesReceiptType, SalesReceiptItemListId,  SalesReceiptItemQty, SalesReceiptItemPrice, TenderDebitCard01TenderAmount,FQSaveToCache) Values ('{0}','{1}','{2}','{3}','{4}',{5},{6},{7},{8})",  customerName, comments, cashierName, salesReceiptType, itemName, quanity, rate, tenderAmount,1);
+ 
+
             //query = string.Format("Insert into invoiceline(txnid,InvoiceLineItemRefFullName, InvoiceLineQuantity, InvoiceLineRate, InvoiceLineDesc) values('{0}','{1}',{2},{3},'{4}') ", txnID, itemFullName, quanity, rate, description);
             //MessageBox.Show(query);
             using (OdbcCommand QBEmployeecmd = new OdbcCommand(query, _cn))
@@ -264,7 +241,24 @@ namespace JumpQ_TestApp
 
             }
         }
-        
+        private void InsertSalesReceiptNewLineItem(string customerName, string comments, string cashierName, string salesReceiptType, string itemName, int quanity, int rate, int tenderAmount, string salesID)
+        {
+            string query =
+                    string.Format("Insert Into SalesReceiptItem ( CustomerListId, Comments, Cashier, SalesReceiptType, SalesReceiptItemListId,  SalesReceiptItemQty, SalesReceiptItemPrice, TenderDebitCard01TenderAmount where TxnID='{0}'where TxnID = '" + salesID + "') Values ('{0}','{1}','{2}','{3}','{4}',{5},{6},{7}) ", customerName, comments, cashierName, salesReceiptType, itemName, quanity, rate, tenderAmount);
+
+
+            //query = string.Format("Insert into invoiceline(txnid,InvoiceLineItemRefFullName, InvoiceLineQuantity, InvoiceLineRate, InvoiceLineDesc) values('{0}','{1}',{2},{3},'{4}') ", txnID, itemFullName, quanity, rate, description);
+            //MessageBox.Show(query);
+            using (OdbcCommand QBEmployeecmd = new OdbcCommand(query, _cn))
+            {
+                //MessageBox.Show("" + QBEmployeecmd.Connection.State.ToString());
+                QBEmployeecmd.CommandType = CommandType.Text;
+                //MessageBox.Show("" + QBEmployeecmd.CommandType.ToString());
+                QBEmployeecmd.ExecuteNonQuery();
+                //MessageBox.Show("Execute Success");
+
+            }
+        }
         private void DisplaySalesReceiptGrid(string customerListID)
         {
             string query = string.Format("SELECT CustomerListId, Comments, Cashier, SalesReceiptType, SalesReceiptItemListId,  SalesReceiptItemQty as ItemQuantity, SalesReceiptItemPrice As ItemPrice, TenderCash01TenderAmount As TotalTenderAmount FROM SalesReceiptItem where TxnID='{0}'", customerListID);
@@ -274,7 +268,7 @@ namespace JumpQ_TestApp
 
         #endregion
 
-        private string GetLastInsertedId(string query)
+        private string GetLastInsertedSalesId(string query)
         {
             string lastInsertedId = "";
             using (OdbcCommand QBEmployeecmd = new OdbcCommand(query, _cn))
@@ -298,10 +292,10 @@ namespace JumpQ_TestApp
             //sfDataGrid1.AutoGenerateColumns = true;
             //sfDataGrid1.DataSource = myTable;
           //  sfDataGrid1.Style = StyleChanged; BorderStyle.FixedSingle;  
-                return;
-            grvData.AutoGenerateColumns = true;
-            grvData.DataSource = myTable;
-            grvData.BorderStyle = BorderStyle.FixedSingle;        
+             //   return;
+            //grvData.AutoGenerateColumns = true;
+            //grvData.DataSource = myTable;
+            //grvData.BorderStyle = BorderStyle.FixedSingle;        
         }
         private DataTable SelctQuery(string query)
         {
@@ -335,7 +329,11 @@ namespace JumpQ_TestApp
             //ProcessQuery(query);
           //  DataTable newDt;
         }
-        
+        void PostRfidandReferenceID()
+        {
+            SQLiteRFIDInsertQuery();
+
+        }
         void chkifPriceexitInQuickBook(string QRcode, int price)
         {
             string query = string.Format("SELECT  ListId, Desc1, Desc2,Price1, Size, ItemNumber FROM ItemInventory WHERE ALU= '{0}'", QRcode);
@@ -348,42 +346,37 @@ namespace JumpQ_TestApp
                   if (price == QuickPrice)
                   {
                       ticket = true;
-                      if (jstRfid.Count > 0)
-                      {
+                  
+                      //if (jstRfid.Count > 0)
+                      //{
+                          #region
 
-
-                          foreach (var item in jstRfid)
-                          {
+                          //foreach (var item in jstRfid)
+                          //{
                           
-                              string[] splitblockCont = item.Split('*');
-                              foreach (string blockCont in splitblockCont)
-                              {
-                               
-                                 
-                                      String insertQuery = "INSERT INTO RfidTable(TransactDate,RfidCode,QuickBookID,ItemName,Description,Price,Size, QuickBookItemNo) VALUES('" + DateTime.Now + "', '" + blockCont + "','" + newDt.Rows[0][0] + "','" + newDt.Rows[0][1] + "','" + newDt.Rows[0][2] + "','" + newDt.Rows[0][3] + "','" + newDt.Rows[0][4] + "',   )";
+                          //    string[] splitblockCont = item.Split('*');
+                          //    foreach (string blockCont in splitblockCont)
+                          //    {
 
-                                      SQLiteCommand cmd = con.CreateCommand();
-                                      cmd.CommandType = CommandType.Text;
-                                      cmd.CommandText = insertQuery;
-                                      cmd.ExecuteNonQuery();
+                          //        MessageBox.Show(blockCont);
+                          //        String insertQuery = "insert into RfidTable (TransactDate,RfidCode,QuickBookID,ItemName,Description,Price,Size) VALUES('" + DateTime.Now + "', '" + blockCont + "','" + newDt.Rows[0][0].ToString() + "','" + newDt.Rows[0][1].ToString() + "','" + newDt.Rows[0][2].ToString() + "','" + newDt.Rows[0][3].ToString() + "','" + newDt.Rows[0][4].ToString() + "'   )";
+
+                          //        SQLiteCommand cmd = con.CreateCommand();
+                          //        cmd.CommandType = CommandType.Text;
+                          //        cmd.CommandText = insertQuery;
+                          //        cmd.ExecuteNonQuery();
                           
 
-                              }
-                              //string result = splitblockCont[0].Trim();
-                              //int ItmQty = Convert.ToInt32(splitblockCont[1].Trim());
+                          //    }
+                          //    //string result = splitblockCont[0].Trim();
+                          //    //int ItmQty = Convert.ToInt32(splitblockCont[1].Trim());
+                          //}
+                          #endregion
+                      //}
 
-
-
-                          }
-                      }
-
-
-
-
-                     SQLiteRFIDInsertQuery();
+                    // SQLiteRFIDInsertQuery();
                       //string lastInsertedId1 = GetLastInsertedId("sp_lastInsertID SalesReceiptItem");
                       //DisplaySalesReceiptGrid(lastInsertedId1);
-
                
                   }
                   else
@@ -404,12 +397,47 @@ namespace JumpQ_TestApp
         }
         private void SQLiteRFIDInsertQuery( )
         {
+            try
+            {
+              // MessageBox.Show(ReferenceID);
+                string selectQuery = "Select Ref from Reference where Ref='" + ReferenceID + "'";
+                SQLiteDataAdapter sda = new SQLiteDataAdapter(selectQuery, con);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                if (dt.Rows.Count == 0)
+                {
+                    String insertRefQuery = "INSERT INTO Reference(Ref) VALUES('" + ReferenceID + "')";
 
+                    SQLiteCommand Cmd = con.CreateCommand();
+                    Cmd.CommandType = CommandType.Text;
+                    Cmd.CommandText = insertRefQuery;
+                    Cmd.ExecuteNonQuery();
+                    if (Cmd.ExecuteNonQuery() == 1)
+                    {
+                        MessageBox.Show("Sales sucessfully posted!, JumpQ Konnect");
+                    }
+                    PrintReceiptForTransaction();
+                }
+                else
+                {
+                    MessageBox.Show("This transaction has previously been processed ", "JumpQ Konnect");
 
+                }
+             
+             
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error:" + ex.Message, "JumpQ Konnect Alert!");
+                return;
+            }
+
+           
             if (jstRfid.Count > 0)
             {
                
-
+                #region
                 foreach (var item in jstRfid)
                 {
                   //   foreach (string blockCont in BlockContent)
@@ -422,7 +450,7 @@ namespace JumpQ_TestApp
                           newDt = SelctQuery(query);
                           foreach (string QuickItem in newDt.Rows)
                           {
-                              String insertQuery = "INSERT INTO RfidTable(TransactDate,RfidCode,QuickBookID,ItemName,Description,Price,Size, QuickBookItemNo) VALUES('" + DateTime.Now + "', '" + blockCont + "','" + newDt.Rows[0][0] + "','" + newDt.Rows[0][1] + "','" + newDt.Rows[0][2] + "','" + newDt.Rows[0][3] + "','" + newDt.Rows[0][4] + "',   )";
+                              String insertQuery = "INSERT INTO RfidTable(TransactDate,RfidCode,QuickBookID,ItemName,Description,Price,Size) VALUES('" + DateTime.Now + "', '" + blockCont + "','" + newDt.Rows[0][0] + "','" + newDt.Rows[0][1] + "','" + newDt.Rows[0][2] + "','" + newDt.Rows[0][3] + "','" + newDt.Rows[0][4] + "'   )";
 
                               SQLiteCommand cmd = con.CreateCommand();
                               cmd.CommandType = CommandType.Text;
@@ -433,12 +461,11 @@ namespace JumpQ_TestApp
                       }
                       //string result = splitblockCont[0].Trim();
                       //int ItmQty = Convert.ToInt32(splitblockCont[1].Trim());
-
-                   
-
                 }
+                #endregion
             }
 
+           
 
         }
         void captureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
@@ -463,19 +490,23 @@ namespace JumpQ_TestApp
                    // MessageBox.Show(decryptedString);
                     if (captureDevice.IsRunning)
                         captureDevice.Stop();
+                    //textBox1.Text = decryptedString;
+                    //return;
                     BarcodeLogic();
                    
                 }
             }
         }
         bool ticket = false;
-        public void BarcodeLogic()
+        async public void BarcodeLogic()
         {
+            labNotFound.Visible = false;
             jstRfid.Clear();
             NoRfid.Clear();
             BlockContent.Clear();
             ContainRfid.Clear();
             string decryptedQRcode = decryptedString;
+           // BarcodeInput2.Text = decryptedQRcode;
             grvData.Rows.Clear();
             ScannedBarcode.Clear();
             try
@@ -486,11 +517,24 @@ namespace JumpQ_TestApp
                 }
                 #region
 
-
+               // [5449000129420*3*50.00]*ref[Z9TZWZDD]
+               // this is a sample of decryted QRcode
                 List<string> rfid = new List<string>();
 
-                string[] splitString = decryptedQRcode.Split(']');
-               
+                //Splted into 2 part with emphasis on the transaction reference "*ref["
+                string[] splitRefContent = decryptedQRcode.Split(new string[] { "*ref[" }, StringSplitOptions.None);
+
+                //splitRefContent[1].Trim() is the reference part while splitRefContent[0].Trim() is the other part containing transaction items
+                 string[] RefCont=   splitRefContent[1].Trim().Split(']');
+
+                 string TransactionData = splitRefContent[0].Trim();
+                //The rference ID has been unboxed
+                 ReferenceID = RefCont[0].Trim();
+                 //MessageBox.Show(ReferenceID);
+                 //return;
+                //Now trying to split the 2nd part i.e the transactiondata
+                string[] splitString = TransactionData.Split(']');
+              
 
                 if (splitString.Length > 1)
                 {
@@ -566,14 +610,45 @@ namespace JumpQ_TestApp
 
                   if (ticket == true)
                   {
-                      StringBuilder popMssg = new StringBuilder();
-                      popMssg.AppendFormat("\r\nTotal Number of Items: {0}", BlockContent.Count);
-                      popMssg.AppendFormat("\r\nNumber of rfid Items: {0}", ContainRfid.Count);
-                      popMssg.AppendFormat("\r\nTotal Amount: {0}", totalAmount);
-                      ticket = false;
-                      MessageBox.Show("Transaction Summary" + popMssg.ToString(), "JumpQ Konnect Reciept!");
+                      //StringBuilder popMssg = new StringBuilder();
+                      //popMssg.AppendFormat("\r\nTotal Number of Items: {0}", BlockContent.Count);
+                      //popMssg.AppendFormat("\r\nNumber of rfid Items: {0}", ContainRfid.Count);
+                      //popMssg.AppendFormat("\r\nTotal Amount: {0}", totalAmount);
+                      //ticket = false;
+                      //MessageBox.Show("Transaction Summary" + popMssg.ToString(), "JumpQ Konnect Reciept!");
                       txtQRCode.Text = "Scan Successful";
                       txtQRCode.ForeColor = Color.Green;
+                      //Check if transaction has been processed previously
+                      string selectQuery = "Select Ref from Reference where Ref='" + ReferenceID + "'";
+                      SQLiteDataAdapter sda = new SQLiteDataAdapter(selectQuery, con);
+                      DataTable dt = new DataTable();
+                      sda.Fill(dt);
+                      if (dt.Rows.Count == 0)
+                      {
+                          //String insertRefQuery = "INSERT INTO Reference(Ref) VALUES('" + ReferenceID + "')";
+
+                          //SQLiteCommand Cmd = con.CreateCommand();
+                          //Cmd.CommandType = CommandType.Text;
+                          //Cmd.CommandText = insertRefQuery;
+                          //Cmd.ExecuteNonQuery();
+                          //if (Cmd.ExecuteNonQuery() == 1)
+                          //{
+                          //    MessageBox.Show("Sales sucessfully posted!, JumpQ Konnect");
+                          //}
+                      }
+                      else
+                      {
+                         // MessageBox.Show("This transaction has previously been processed ", "JumpQ Konnect");
+                          labNotFound.Text = "Already processed transaction";
+                          pictureBuzzer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(21)))), ((int)(((byte)(28)))));
+                          labNotFound.Visible = true;
+                          await Task.Delay(3000);
+                          pictureBuzzer.BackColor = Color.White;
+
+                          labNotFound.Visible = false;
+
+                      }
+             
                   }
                   
 
@@ -586,7 +661,7 @@ namespace JumpQ_TestApp
             }
             catch (Exception ex)
             {
-
+                //throw;
                 MessageBox.Show(string.Format("Error - {0}, Stack Trace {1}", ex.Message, ex.StackTrace));
             }
 
@@ -628,13 +703,8 @@ namespace JumpQ_TestApp
             grvData.ClearSelection();
         }
 
-        
-
-
-       
-
         #endregion
-         string myToken;
+         string myToken= "";
          public List<string> ScannedBarcode = new List<string>();
        
 
@@ -709,33 +779,97 @@ namespace JumpQ_TestApp
         #region PostSales to QuickBook
          public void InsertScannedItems()
          {
-             if (grvData.Rows.Count > 0)
+             try
              {
-                 foreach (DataGridViewRow Row in grvData.Rows)
+                 #region
+                 if (grvData.Rows.Count > 0)
                  {
+                     string SalesID = ""; int rowIndex = 0;
+                     foreach (DataGridViewRow Row in grvData.Rows)
+                     {
 
-                     string price = (Row.Cells[3].Value.ToString());
+                         string price = (Row.Cells[3].Value.ToString());
 
-                     int qty = Convert.ToInt32(Row.Cells[4].Value);
+                         int qty = Convert.ToInt32(Row.Cells[4].Value);
 
-                     string amt = (Row.Cells[7].Value.ToString());
+                         string amt = (Row.Cells[7].Value.ToString());
 
-                     string listid = (Row.Cells[8].Value.ToString());
+                         string listid = (Row.Cells[8].Value.ToString());
+
+                       
+                         InsertSalesReceiptLineItem(salesRecieptModel.CustomerID, salesRecieptModel.Comments, salesRecieptModel.CashierName, salesRecieptModel.SalesRecieptType, listid, qty, int.Parse(price), int.Parse(amt));
+                         #region  ///summary
+
+                         //    SalesID = GetLastInsertedSalesId("sp_lastInsertID SalesReceiptItem");
+                         //   // MessageBox.Show(SalesID);
+                         //    rowIndex++;
+                         //  //  break;
+                         //}
+                         //else
+                         //{
+                         //    InsertSalesReceiptNewLineItem(salesRecieptModel.CustomerID, salesRecieptModel.Comments, salesRecieptModel.CashierName, salesRecieptModel.SalesRecieptType, listid, qty, int.Parse(price), int.Parse(amt), SalesID);
+                         //    rowIndex++;
+                         //  }
 
 
-                     InsertSalesReceiptLineItem(salesRecieptModel.CustomerID, salesRecieptModel.Comments, salesRecieptModel.CashierName, salesRecieptModel.SalesRecieptType, listid, qty, int.Parse(price), int.Parse(amt));
+
+                         // public List<ISalesReceiptLineAdd> salesReceiptAddNew;
+
+                         ///
+                         ///
+                         #endregion
+
+
+
+                     }
+
+
+
+                     string query =
+                   string.Format("Insert Into SalesReceipt ( CustomerListId, Comments, FQSaveToCache) Values ('{0}','{1}',{2})", salesRecieptModel.CustomerID, salesRecieptModel.Comments, 0);
+
+                     using (OdbcCommand QBEmployeecmd = new OdbcCommand(query, _cn))
+                     {
+
+                         QBEmployeecmd.CommandType = CommandType.Text;
+
+                         QBEmployeecmd.ExecuteNonQuery();
+                         //MessageBox.Show("Execute Success");
+
+                     }
+
+                 #endregion
+                     
+                    
+
+                    //INSERT INTO SalesReceipt (CustomerListID,StoreNumber,Comments,TxnDate,ShipDate,FQSaveToCache) VALUES ('1831695813156176129',1,'CC Transaction #: 260118B38-5E6CA366-5005-4DD3-90B8-2AC9E000B829 ',{d'2018-01-26'},{d'2018-01-26'},0)
+                     return;
 
 
                  }
-                 MessageBox.Show("Sales sucessfully posted!, JumpQ Konmect ");
-                 return;
-
+                 MessageBox.Show("There are no verified products to post", " JumpQ Konnect Alert!");
 
              }
-             MessageBox.Show("There are no verified products to post");
+             catch (Exception ex)
+             {
+
+                 MessageBox.Show(ex.Message);
+             }
+            
 
 
+         }
 
+         private string GetLastInsertedId(string query)
+         {
+             string lastInsertedId = "";
+             using (OdbcCommand QBEmployeecmd = new OdbcCommand(query, _cn))
+             {
+                 QBEmployeecmd.CommandType = CommandType.Text;
+                 var executedResult = QBEmployeecmd.ExecuteScalar();
+                 lastInsertedId = executedResult.ToString();
+             }
+             return lastInsertedId;
          }
 #endregion
 
@@ -836,79 +970,81 @@ namespace JumpQ_TestApp
             //BarcodeInput1.Text = string.Empty;
         }
 
-        void ScanVerifyItem(string ObtainedQRcode)
+          async void ScanVerifyItem(string ObtainedQRcode)
         {
             grvData.ClearSelection();
             //string ObtainedQRcode = "X002C4UXJB";
             // = "";
-            foreach (DataGridViewRow Row in grvData.Rows)
+            int ExitItemCount = 0;
+            if (ObtainedQRcode != string.Empty)
             {
-
-                int VerifiedQty = Convert.ToInt32(Row.Cells[1].Value);
-                int quant = Convert.ToInt32(Row.Cells[4].Value);
-                string barcode = (Row.Cells[5].Value.ToString());
-
-                if (barcode == ObtainedQRcode)
+                foreach (DataGridViewRow Row in grvData.Rows)
                 {
-                    labNotFound.Visible = false;
-                    grvData.BackgroundColor = Color.White;
-                    #region
-                   // MessageBox.Show("eXIST");
-                    if (ScannedBarcode.Count < 1)
+
+                    int VerifiedQty = Convert.ToInt32(Row.Cells[1].Value);
+                    int quant = Convert.ToInt32(Row.Cells[4].Value);
+                    string barcode = (Row.Cells[5].Value.ToString());
+
+                    if (barcode == ObtainedQRcode)
                     {
-                        ScannedBarcode.Add(ObtainedQRcode);
-                        VerifiedQty++;
-                        Row.Cells[1].Value = VerifiedQty.ToString();
-                        Row.DefaultCellStyle.BackColor = Color.ForestGreen;
-                        Row.DefaultCellStyle.ForeColor = Color.White;
+                        ExitItemCount++;
+                        #region
+                                var numberOfhDuplicates = ScannedBarcode.GroupBy(x => ObtainedQRcode).Count(x => x.Count() > 0);
+                                int verified = Convert.ToInt32(Row.Cells[1].Value);
+                                if (verified < quant)
+                                {
+                                    ScannedBarcode.Add(ObtainedQRcode);
+                                    VerifiedQty++;
+                                    Row.Cells[1].Value = VerifiedQty.ToString();
+                                    labNotFound.Visible = false;
+                                    pictureBuzzer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(200)))), ((int)(((byte)(83)))));
+
+                                    await Task.Delay(1000);
+
+                                    pictureBuzzer.BackColor = Color.White;
+                                }
+                                else
+                                {
+                                    ////Row.DefaultCellStyle.BackColor = Color.Red;
+                                    ////Row.DefaultCellStyle.ForeColor = Color.White;
+                                    //// MessageBox.Show("Item Exceeded, Please return the item");
+
+                                    ////grvData.BackgroundColor = Color.White;
+
+
+                                    //
+                                    pictureBuzzer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(21)))), ((int)(((byte)(28)))));
+                                    labNotFound.Text = "Item Exceeded, Please return the item";
+                                    labNotFound.Visible = true;
+                                    await Task.Delay(2000);
+                                    pictureBuzzer.BackColor = Color.White;
+
+                                    labNotFound.Visible = false;
+
+                                }
+                        // MessageBox.Show(numberOfhDuplicates.ToString());
+                        #endregion
                     }
                     else
                     {
-                        if (!ScannedBarcode.Contains(ObtainedQRcode))// IF THE LIST DOESN'T CONTAIN THE BARCODE, PLEASE ADD TO THE LIST
-                        {
-                            ScannedBarcode.Add(ObtainedQRcode);
-                            VerifiedQty++;
-                            Row.Cells[1].Value = VerifiedQty.ToString();
-                            Row.DefaultCellStyle.BackColor = Color.ForestGreen;
-                            Row.DefaultCellStyle.ForeColor = Color.White;
-                        }
-                        else
-                        {
-                            //ELSE IF IT CONTAINS, PLEASE COUNT THE DUPLICATE OF THAT BARCODE AND COMPARE TO ACTUAL QUANTITY ORDERED
-                            var numberOfhDuplicates = ScannedBarcode.GroupBy(x => ObtainedQRcode).Count(x => x.Count() > 0);
-                            int verified = Convert.ToInt32(Row.Cells[1].Value);
-                            if (verified < quant)
-                            {
-                                ScannedBarcode.Add(ObtainedQRcode);
-                                VerifiedQty++;
-                                Row.Cells[1].Value = VerifiedQty.ToString();
-                                Row.DefaultCellStyle.BackColor = Color.ForestGreen;
-                                Row.DefaultCellStyle.ForeColor = Color.White;
-                            }
-                            else
-                            {
-                                Row.DefaultCellStyle.BackColor = Color.Red;
-                                Row.DefaultCellStyle.ForeColor = Color.White;
-                               // MessageBox.Show("Item Exceeded, Please return the item");
-                                labNotFound.Text = "Item Exceeded, Please return the item";
-                                labNotFound.Visible = true;
+                        ExitItemCount += 0;
+                        
 
-                            }
-                            // MessageBox.Show(numberOfhDuplicates.ToString());
-                        }
                     }
-                    //               if (!myList.Contains(s))
-                    #endregion //myList.Add(s);
+
                 }
-                else
+                if (ExitItemCount == 0)
                 {
                     labNotFound.Text = "This item is not part of the transaction";
+                    pictureBuzzer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(21)))), ((int)(((byte)(28)))));
                     labNotFound.Visible = true;
-                    grvData.BackgroundColor = Color.Red;
-                    // MessageBox.Show("This item is not part of the transaction");
-                }
+                    await Task.Delay(1000);
+                    pictureBuzzer.BackColor = Color.White;
 
+                    labNotFound.Visible = false;
+                }
             }
+          
         }
         #endregion
 
@@ -1019,7 +1155,7 @@ namespace JumpQ_TestApp
             //Image image = Resources.logo;
             //e.Graphics.DrawImage(image, startX + 50, startY + Offset, 100, 30);
 
-            graphics.DrawString("Welcome to "+ Properties.Settings.Default.QbComputerName, smallfont,
+            graphics.DrawString("Welcome to "+ Properties.Settings.Default.QbCompanyData, smallfont,
                     new SolidBrush(Color.Black), startX + 22, startY + Offset);
 
             Offset = Offset + largeinc + 10;
@@ -1095,7 +1231,7 @@ namespace JumpQ_TestApp
             //InsertItem(tip, "", Offset);
 
             Offset = Offset + largeinc;
-            string DrawnBy = "PiedTech Solutions: +234 8165583699";
+            string DrawnBy = "Okeke Victor  : +234 8165583699";
             DrawSimpleString(DrawnBy, minifont, Offset, 15);
         }
         
@@ -1153,11 +1289,7 @@ namespace JumpQ_TestApp
             Settings setts = new Settings();
             setts.ShowDialog();
         }
-        //private void BtnSettings_Click(object sender, EventArgs e)
-        //{
-        //    Settings setts = new Settings();
-        //    setts.ShowDialog();
-        //}
+
         private void ConnectBtn_Click(object sender, EventArgs e)
         {
 
@@ -1165,44 +1297,50 @@ namespace JumpQ_TestApp
             {
                 if (cboListOfDSN.SelectedIndex > -1 && cameraTypes.SelectedIndex > -1)
                 {
-                    //if (cboListOfDSN.Text == "QuickBooks Data POS")
-                    //{
-                    Application.DoEvents();
-                    if (ConnectBtn.Text == "Disconnect")
+                    if (Properties.Settings.Default.CustomerID == string.Empty)
                     {
-                        if (_cn != null)
-                        {
-                            lblConnectionStatus.Text = "Disconnecting....";
-                            _cn.Close();
-                            _cn.Dispose();
-                            _cn = null;
-                            ConnectBtn.Text = "Connect";
-                            lblConnectionStatus.Text = "Not Connected";
-                            lblConnectionStatus.ForeColor = Color.DarkRed;
-                        }
+                        MessageBox.Show("Please set up a default name for customers.\n Also add other information for a smooth sail" , "JumpQ Konnect Alert!");
+                        btnSet_Click(null, null);
+                        return;
                     }
-                    else
+                    else if ( Properties.Settings.Default.CustomerID != string.Empty) 
                     {
-                        if (_cn == null || _cn.State == ConnectionState.Closed)
+                        Application.DoEvents();
+                        if (ConnectBtn.Text == "Disconnect")
                         {
-                            lblConnectionStatus.Text = "Connecting....";
-
-                            _cn = new OdbcConnection(string.Format("DSN={0}", cboListOfDSN.Text));
-                            _cn.ConnectionTimeout = 60;
-                            _cn.Open();
-                            ConnectBtn.Text = "Disconnect";
-                            lblConnectionStatus.Text = "Connected";
-                            lblConnectionStatus.ForeColor = Color.Green;
+                            if (_cn != null)
+                            {
+                                lblConnectionStatus.Text = "Disconnecting....";
+                                _cn.Close();
+                                _cn.Dispose();
+                                _cn = null;
+                                ConnectBtn.Text = "Connect";
+                                lblConnectionStatus.Text = "Not Connected";
+                                lblConnectionStatus.ForeColor = Color.DarkRed;
+                                ConnectBtn.Enabled = true;
+                                scanBtn.Enabled = true;
+                            }
                         }
+                        else
+                        {
+                            if (_cn == null || _cn.State == ConnectionState.Closed)
+                            {
+                                lblConnectionStatus.Text = "Connecting....";
 
+                                _cn = new OdbcConnection(string.Format("DSN={0}", cboListOfDSN.Text));
+                                _cn.ConnectionTimeout = 60;
+                                _cn.Open();
+                                ConnectBtn.Text = "Disconnect";
+                                lblConnectionStatus.Text = "Connected";
+                                lblConnectionStatus.ForeColor = Color.Green;
+                                ConnectBtn.Enabled = true;
+                                scanBtn.Enabled = true;
+                            }
+                        }
                         //DisplayItemInGrid("RUKEWE");
                     }
                     Application.DoEvents();
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("Please select QuickBooks Data POS");
-                    //}
+             
                 }
 
 
@@ -1218,40 +1356,47 @@ namespace JumpQ_TestApp
         {
             try
             {
-
+                
                 if (_cn == null || _cn.State == ConnectionState.Closed)
                 {
-                    btnConnect_Click(null, null);
-                }
-
-                if (grvData.Rows.Count >0)
-                {
-                    grvData.Rows.Clear();
-                }
-               
-
-                if (captureDevice == null)
-                {
-
-                    txtQRCode.Text = string.Empty;
-                    pictureBox.Image = null;
-                    captureDevice = new VideoCaptureDevice(filterInfoCollection[cameraTypes.SelectedIndex].MonikerString);
-                    captureDevice.NewFrame += captureDevice_NewFrame;
-                    captureDevice.Start();
-                    timer1.Start();
+                    ConnectBtn_Click(null, null);
                 }
                 else
                 {
-                    pictureBox.Image = null;
-                    captureDevice.Stop();
-                    txtQRCode.Text = string.Empty;
-                    captureDevice = new VideoCaptureDevice(filterInfoCollection[cameraTypes.SelectedIndex].MonikerString);
-                    captureDevice.NewFrame += captureDevice_NewFrame;
-                    captureDevice.Start();
-                    timer1.Start();
+                    if (captureDevice == null)
+                    {
+                        if (grvData.Rows.Count > 0)
+                        {
+                            grvData.Rows.Clear();
+                        }
+                        txtQRCode.Text = string.Empty;
+                        pictureBox.Image = null;
+                        captureDevice = new VideoCaptureDevice(filterInfoCollection[cameraTypes.SelectedIndex].MonikerString);
+                        captureDevice.NewFrame += captureDevice_NewFrame;
+                        captureDevice.Start();
+                        timer1.Start();
+                    }
+                    else
+                    {
+                        if (grvData.Rows.Count > 0)
+                        {
+                            grvData.Rows.Clear();
+                        }
+                        pictureBox.Image = null;
+                        captureDevice.Stop();
+                        txtQRCode.Text = string.Empty;
+                        captureDevice = new VideoCaptureDevice(filterInfoCollection[cameraTypes.SelectedIndex].MonikerString);
+                        captureDevice.NewFrame += captureDevice_NewFrame;
+                        captureDevice.Start();
+                        timer1.Start();
 
+                    }
+                    //}
                 }
-                //}
+              
+               
+
+              
 
             }
             catch (Exception ex)
@@ -1263,13 +1408,11 @@ namespace JumpQ_TestApp
 
 
         }
+
         private void scANvERITFY_Click(object sender, EventArgs e)
         {
             if (grvData.Rows.Count > 0)
             {
-
-
-
                 BarcodeInput2.Text = string.Empty;
                 BarcodeInput1.Text = string.Empty;
                 BarcodeInput1.Focus();
@@ -1289,7 +1432,18 @@ namespace JumpQ_TestApp
         {
             try
             {
-                InsertScannedItems();
+                if (grvData.Rows.Count > 0)
+                {
+                    InsertScannedItems();
+                    PostRfidandReferenceID();
+                   
+                    grvData.Rows.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("No sales Made", " JumpQ Konnect Alert!");
+                }
+              
 
 
             }
@@ -1305,6 +1459,7 @@ namespace JumpQ_TestApp
         {
             try
             {
+               // Login_FormClosing(null, null);
                 if (captureDevice == null) return;
 
                 if (captureDevice.IsRunning)
@@ -1324,16 +1479,59 @@ namespace JumpQ_TestApp
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
+            
+            //JumpQ_Task.WindowsManager.CloseWindows();
 
             Application.Exit();
+            
         }
 #endregion
+  
+        private void btnMinimized_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
 
-        private void Printbtn_Click(object sender, EventArgs e)
+        private void timerColor_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnMaximize_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void ManualVerification_Click(object sender, EventArgs e)
         {
             if (grvData.Rows.Count > 0)
             {
-                PrintReceiptForTransaction();
+
+
+
+                if (BarcodeInput1.Text == string.Empty)
+                {
+                    MessageBox.Show("Input barcode", "JumpQ Konnect!");
+                    BarcodeInput1.Focus();
+                }
+                else
+                {
+                    ScanVerifyItem(BarcodeInput1.Text);
+                    BarcodeInput1.Text = string.Empty;
+                }
+    
+
+            }
+            else
+            {
+                MessageBox.Show("No transaction to verify, JumpQ Konnect");
             }
         }
     }

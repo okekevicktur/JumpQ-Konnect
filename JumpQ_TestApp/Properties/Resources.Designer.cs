@@ -63,6 +63,36 @@ namespace JumpQ_TestApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap jumpQ_green {
+            get {
+                object obj = ResourceManager.GetObject("jumpQ_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap jumpQ_orange {
+            get {
+                object obj = ResourceManager.GetObject("jumpQ_orange", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap jumpQ_red {
+            get {
+                object obj = ResourceManager.GetObject("jumpQ_red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap QR_Code {
             get {
                 object obj = ResourceManager.GetObject("QR_Code", resourceCulture);

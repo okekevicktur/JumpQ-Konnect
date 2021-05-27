@@ -20,10 +20,18 @@ namespace JumpQ_TestApp
         }
         private OdbcConnection _cn;
         string NameofCustomer;
-        string IdofCustomer;
+        //string IdofCustomer;
         private void BtnAddCustomer_Click(object sender, EventArgs e)
         {
-            InsertCustomer(txtFName.Text, txtLName.Text);
+            if (txtFName.Text != string.Empty && txtLName.Text != string.Empty)
+            {
+                 InsertCustomer(txtFName.Text, txtLName.Text);
+            }
+            else
+            {
+                MessageBox.Show("Make sure you input all required field for customer name", "JumpQ Konnect Alert ");
+            }
+           
         
         }
         void CreateConnect()
@@ -136,7 +144,11 @@ namespace JumpQ_TestApp
                 string lastInsertedId = GetLastInsertedId("sp_lastInsertID Customer");
                 CustomerID.Text=lastInsertedId;
                 SaveSettings();
+
                 MessageBox.Show("Added Successfully", "JumpQ Konnect");
+                txtFName.Text = string.Empty;
+                txtLName.Text = string.Empty;
+               
             }
            
 
@@ -185,6 +197,22 @@ namespace JumpQ_TestApp
         {
             CreateConnect();
       
+        }
+
+        private void btnAddCompany_Click(object sender, EventArgs e)
+        {
+            if (TxtCompanyData.Text != string.Empty)
+            {
+                Properties.Settings.Default.QbCompanyData = txtCompData.Text;
+                Properties.Settings.Default.Save();
+                
+                MessageBox.Show("Company Name Saved Successfully", " JumpQ Konnect Alert!");
+                txtCompData.Text = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show("Input name of store", " JumpQ Konnect Alert!");
+            }
         }
 
      

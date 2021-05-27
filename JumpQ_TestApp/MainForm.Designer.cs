@@ -29,14 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.StateProperties stateProperties5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.StateProperties();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.StateProperties stateProperties6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.StateProperties();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.StateProperties stateProperties7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.StateProperties();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.StateProperties stateProperties8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.StateProperties();
             this.grvData = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,50 +45,55 @@
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scanBtn = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.lblConnectionStatus = new System.Windows.Forms.Label();
             this.cboListOfDSN = new System.Windows.Forms.ComboBox();
             this.cameraTypes = new System.Windows.Forms.ComboBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.bunifuGradientPanel1 = new Bunifu.Framework.UI.BunifuGradientPanel();
-            this.btnHelp = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.btnSet = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.btnClose = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.ConnectBtn = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtQRCode = new System.Windows.Forms.Label();
+            this.btnSet = new System.Windows.Forms.Button();
             this.BtnPostSales = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.ConnectBtn = new System.Windows.Forms.Button();
+            this.txtQRCode = new System.Windows.Forms.Label();
             this.scANvERITFY = new Bunifu.Framework.UI.BunifuFlatButton();
             this.labNotFound = new System.Windows.Forms.Label();
             this.BarcodeInput1 = new System.Windows.Forms.TextBox();
             this.BarcodeInput2 = new System.Windows.Forms.TextBox();
-            this.Printbtn = new Bunifu.Framework.UI.BunifuFlatButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBuzzer = new System.Windows.Forms.PictureBox();
+            this.timerColor = new System.Windows.Forms.Timer(this.components);
+            this.ManualVerification = new Bunifu.Framework.UI.BunifuFlatButton();
             ((System.ComponentModel.ISupportInitialize)(this.grvData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
-            this.bunifuGradientPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBuzzer)).BeginInit();
             this.SuspendLayout();
             // 
             // grvData
             // 
             this.grvData.AllowUserToAddRows = false;
             this.grvData.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            this.grvData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.grvData.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(169)))), ((int)(((byte)(184)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.grvData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.grvData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grvData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(169)))), ((int)(((byte)(184)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -103,22 +105,29 @@
             this.Column6,
             this.Total,
             this.Column7});
-            this.grvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
-            this.grvData.Location = new System.Drawing.Point(230, 305);
+            this.grvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(154)))), ((int)(((byte)(184)))));
+            this.grvData.Location = new System.Drawing.Point(54, 274);
             this.grvData.Name = "grvData";
             this.grvData.ReadOnly = true;
             this.grvData.RowHeadersVisible = false;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grvData.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.grvData.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.grvData.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.grvData.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
             this.grvData.RowTemplate.ReadOnly = true;
             this.grvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grvData.ShowEditingIcon = false;
-            this.grvData.Size = new System.Drawing.Size(859, 361);
+            this.grvData.Size = new System.Drawing.Size(769, 307);
             this.grvData.TabIndex = 15;
             // 
             // Column1
             // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(169)))), ((int)(((byte)(184)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column1.HeaderText = "S/N";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -154,6 +163,7 @@
             this.Column5.HeaderText = "QRcode";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
+            this.Column5.Visible = false;
             // 
             // Column6
             // 
@@ -164,6 +174,7 @@
             // 
             // Total
             // 
+            this.Total.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Total.HeaderText = "Total Amount";
             this.Total.Name = "Total";
             this.Total.ReadOnly = true;
@@ -177,9 +188,9 @@
             // 
             // scanBtn
             // 
-            this.scanBtn.Activecolor = System.Drawing.SystemColors.Menu;
-            this.scanBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.scanBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
+            this.scanBtn.Active = false;
+            this.scanBtn.Activecolor = System.Drawing.SystemColors.ActiveCaption;
+            this.scanBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(154)))), ((int)(((byte)(184)))));
             this.scanBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.scanBtn.BorderRadius = 5;
             this.scanBtn.ButtonText = "Click to Scan";
@@ -199,14 +210,14 @@
             this.scanBtn.IconVisible = true;
             this.scanBtn.IconZoom = 40D;
             this.scanBtn.IsTab = false;
-            this.scanBtn.Location = new System.Drawing.Point(823, 174);
+            this.scanBtn.Location = new System.Drawing.Point(54, 228);
             this.scanBtn.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.scanBtn.Name = "scanBtn";
-            this.scanBtn.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
-            this.scanBtn.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(241)))), ((int)(((byte)(189)))));
-            this.scanBtn.OnHoverTextColor = System.Drawing.Color.Black;
+            this.scanBtn.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(154)))), ((int)(((byte)(184)))));
+            this.scanBtn.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.scanBtn.OnHoverTextColor = System.Drawing.Color.White;
             this.scanBtn.selected = false;
-            this.scanBtn.Size = new System.Drawing.Size(117, 73);
+            this.scanBtn.Size = new System.Drawing.Size(131, 36);
             this.scanBtn.TabIndex = 70;
             this.scanBtn.Text = "Click to Scan";
             this.scanBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -214,23 +225,12 @@
             this.scanBtn.TextFont = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scanBtn.Click += new System.EventHandler(this.scanBtn_Click);
             // 
-            // pictureBox
-            // 
-            this.pictureBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox.Location = new System.Drawing.Point(29, 21);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(245, 173);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox.TabIndex = 68;
-            this.pictureBox.TabStop = false;
-            // 
             // lblConnectionStatus
             // 
             this.lblConnectionStatus.AutoSize = true;
             this.lblConnectionStatus.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblConnectionStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConnectionStatus.ForeColor = System.Drawing.Color.Red;
+            this.lblConnectionStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(21)))), ((int)(((byte)(28)))));
             this.lblConnectionStatus.Location = new System.Drawing.Point(0, 0);
             this.lblConnectionStatus.Name = "lblConnectionStatus";
             this.lblConnectionStatus.Size = new System.Drawing.Size(122, 21);
@@ -242,9 +242,9 @@
             this.cboListOfDSN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboListOfDSN.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboListOfDSN.FormattingEnabled = true;
-            this.cboListOfDSN.Location = new System.Drawing.Point(17, 140);
+            this.cboListOfDSN.Location = new System.Drawing.Point(11, 151);
             this.cboListOfDSN.Name = "cboListOfDSN";
-            this.cboListOfDSN.Size = new System.Drawing.Size(166, 25);
+            this.cboListOfDSN.Size = new System.Drawing.Size(182, 25);
             this.cboListOfDSN.TabIndex = 9;
             // 
             // cameraTypes
@@ -252,181 +252,21 @@
             this.cameraTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cameraTypes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cameraTypes.FormattingEnabled = true;
-            this.cameraTypes.Location = new System.Drawing.Point(17, 69);
+            this.cameraTypes.Location = new System.Drawing.Point(11, 80);
             this.cameraTypes.Name = "cameraTypes";
-            this.cameraTypes.Size = new System.Drawing.Size(164, 25);
+            this.cameraTypes.Size = new System.Drawing.Size(182, 25);
             this.cameraTypes.TabIndex = 17;
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // bunifuGradientPanel1
-            // 
-            this.bunifuGradientPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuGradientPanel1.BackgroundImage")));
-            this.bunifuGradientPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuGradientPanel1.Controls.Add(this.btnHelp);
-            this.bunifuGradientPanel1.Controls.Add(this.btnSet);
-            this.bunifuGradientPanel1.Controls.Add(this.btnClose);
-            this.bunifuGradientPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bunifuGradientPanel1.GradientBottomLeft = System.Drawing.Color.White;
-            this.bunifuGradientPanel1.GradientBottomRight = System.Drawing.Color.White;
-            this.bunifuGradientPanel1.GradientTopLeft = System.Drawing.Color.White;
-            this.bunifuGradientPanel1.GradientTopRight = System.Drawing.Color.White;
-            this.bunifuGradientPanel1.Location = new System.Drawing.Point(0, 0);
-            this.bunifuGradientPanel1.Name = "bunifuGradientPanel1";
-            this.bunifuGradientPanel1.Quality = 10;
-            this.bunifuGradientPanel1.Size = new System.Drawing.Size(1279, 52);
-            this.bunifuGradientPanel1.TabIndex = 72;
-            // 
-            // btnHelp
-            // 
-            this.btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHelp.BackColor = System.Drawing.Color.Transparent;
-            this.btnHelp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnHelp.BackgroundImage")));
-            this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnHelp.ButtonText = "?";
-            this.btnHelp.ButtonTextMarginLeft = 2;
-            this.btnHelp.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(161)))), ((int)(((byte)(161)))));
-            this.btnHelp.DisabledFillColor = System.Drawing.Color.Gray;
-            this.btnHelp.DisabledForecolor = System.Drawing.Color.White;
-            this.btnHelp.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(148)))), ((int)(((byte)(148)))));
-            this.btnHelp.IconLeftCursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHelp.IconPadding = 10;
-            this.btnHelp.IconRightCursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHelp.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
-            this.btnHelp.IdleBorderRadius = 10;
-            this.btnHelp.IdleBorderThickness = 1;
-            this.btnHelp.IdleFillColor = System.Drawing.Color.White;
-            this.btnHelp.IdleIconLeftImage = null;
-            this.btnHelp.IdleIconRightImage = null;
-            this.btnHelp.Location = new System.Drawing.Point(1213, 12);
-            this.btnHelp.Name = "btnHelp";
-            stateProperties5.BorderColor = System.Drawing.Color.White;
-            stateProperties5.BorderRadius = 20;
-            stateProperties5.BorderThickness = 0;
-            stateProperties5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
-            stateProperties5.IconLeftImage = null;
-            stateProperties5.IconRightImage = null;
-            this.btnHelp.onHoverState = stateProperties5;
-            this.btnHelp.Size = new System.Drawing.Size(29, 31);
-            this.btnHelp.TabIndex = 39;
-            this.btnHelp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnSet
-            // 
-            this.btnSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSet.BackColor = System.Drawing.Color.Transparent;
-            this.btnSet.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSet.BackgroundImage")));
-            this.btnSet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSet.ButtonText = "";
-            this.btnSet.ButtonTextMarginLeft = 2;
-            this.btnSet.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(161)))), ((int)(((byte)(161)))));
-            this.btnSet.DisabledFillColor = System.Drawing.Color.Gray;
-            this.btnSet.DisabledForecolor = System.Drawing.Color.White;
-            this.btnSet.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(148)))), ((int)(((byte)(148)))));
-            this.btnSet.IconLeftCursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSet.IconPadding = 10;
-            this.btnSet.IconRightCursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSet.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
-            this.btnSet.IdleBorderRadius = 10;
-            this.btnSet.IdleBorderThickness = 1;
-            this.btnSet.IdleFillColor = System.Drawing.Color.White;
-            this.btnSet.IdleIconLeftImage = ((System.Drawing.Image)(resources.GetObject("btnSet.IdleIconLeftImage")));
-            this.btnSet.IdleIconRightImage = null;
-            this.btnSet.Location = new System.Drawing.Point(1172, 12);
-            this.btnSet.Name = "btnSet";
-            stateProperties6.BorderColor = System.Drawing.Color.White;
-            stateProperties6.BorderRadius = 20;
-            stateProperties6.BorderThickness = 0;
-            stateProperties6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
-            stateProperties6.IconLeftImage = null;
-            stateProperties6.IconRightImage = null;
-            this.btnSet.onHoverState = stateProperties6;
-            this.btnSet.Size = new System.Drawing.Size(35, 31);
-            this.btnSet.TabIndex = 38;
-            this.btnSet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.Transparent;
-            this.btnClose.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClose.BackgroundImage")));
-            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnClose.ButtonText = "X";
-            this.btnClose.ButtonTextMarginLeft = 2;
-            this.btnClose.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(161)))), ((int)(((byte)(161)))));
-            this.btnClose.DisabledFillColor = System.Drawing.Color.Gray;
-            this.btnClose.DisabledForecolor = System.Drawing.Color.White;
-            this.btnClose.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(148)))), ((int)(((byte)(148)))));
-            this.btnClose.IconLeftCursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClose.IconPadding = 10;
-            this.btnClose.IconRightCursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClose.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
-            this.btnClose.IdleBorderRadius = 10;
-            this.btnClose.IdleBorderThickness = 1;
-            this.btnClose.IdleFillColor = System.Drawing.Color.White;
-            this.btnClose.IdleIconLeftImage = null;
-            this.btnClose.IdleIconRightImage = null;
-            this.btnClose.Location = new System.Drawing.Point(1247, 12);
-            this.btnClose.Name = "btnClose";
-            stateProperties7.BorderColor = System.Drawing.Color.White;
-            stateProperties7.BorderRadius = 20;
-            stateProperties7.BorderThickness = 0;
-            stateProperties7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
-            stateProperties7.IconLeftImage = null;
-            stateProperties7.IconRightImage = null;
-            this.btnClose.onHoverState = stateProperties7;
-            this.btnClose.Size = new System.Drawing.Size(29, 31);
-            this.btnClose.TabIndex = 36;
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // ConnectBtn
-            // 
-            this.ConnectBtn.BackColor = System.Drawing.Color.Transparent;
-            this.ConnectBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ConnectBtn.BackgroundImage")));
-            this.ConnectBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ConnectBtn.ButtonText = "Connect to QB POS";
-            this.ConnectBtn.ButtonTextMarginLeft = 0;
-            this.ConnectBtn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(161)))), ((int)(((byte)(161)))));
-            this.ConnectBtn.DisabledFillColor = System.Drawing.Color.Gray;
-            this.ConnectBtn.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(161)))), ((int)(((byte)(161)))));
-            this.ConnectBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConnectBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(161)))), ((int)(((byte)(161)))));
-            this.ConnectBtn.IconLeftCursor = System.Windows.Forms.Cursors.Hand;
-            this.ConnectBtn.IconPadding = 10;
-            this.ConnectBtn.IconRightCursor = System.Windows.Forms.Cursors.Hand;
-            this.ConnectBtn.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
-            this.ConnectBtn.IdleBorderRadius = 30;
-            this.ConnectBtn.IdleBorderThickness = 0;
-            this.ConnectBtn.IdleFillColor = System.Drawing.Color.White;
-            this.ConnectBtn.IdleIconLeftImage = null;
-            this.ConnectBtn.IdleIconRightImage = null;
-            this.ConnectBtn.Location = new System.Drawing.Point(9, 188);
-            this.ConnectBtn.Name = "ConnectBtn";
-            stateProperties8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-            stateProperties8.BorderRadius = 20;
-            stateProperties8.BorderThickness = 3;
-            stateProperties8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
-            stateProperties8.IconLeftImage = null;
-            stateProperties8.IconRightImage = null;
-            this.ConnectBtn.onHoverState = stateProperties8;
-            this.ConnectBtn.Size = new System.Drawing.Size(185, 54);
-            this.ConnectBtn.TabIndex = 75;
-            this.ConnectBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ConnectBtn.Click += new System.EventHandler(this.ConnectBtn_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(148)))), ((int)(((byte)(148)))));
-            this.label2.Location = new System.Drawing.Point(12, 41);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(6, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 20);
             this.label2.TabIndex = 78;
@@ -436,8 +276,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(148)))), ((int)(((byte)(148)))));
-            this.label1.Location = new System.Drawing.Point(13, 117);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(12, 128);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(181, 20);
             this.label1.TabIndex = 79;
@@ -445,42 +285,52 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(169)))), ((int)(((byte)(184)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnSet);
+            this.panel1.Controls.Add(this.BtnPostSales);
+            this.panel1.Controls.Add(this.ConnectBtn);
             this.panel1.Controls.Add(this.cameraTypes);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.ConnectBtn);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.lblConnectionStatus);
             this.panel1.Controls.Add(this.cboListOfDSN);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 52);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(913, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(206, 673);
+            this.panel1.Size = new System.Drawing.Size(206, 600);
             this.panel1.TabIndex = 80;
             // 
-            // txtQRCode
+            // btnSet
             // 
-            this.txtQRCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtQRCode.AutoSize = true;
-            this.txtQRCode.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQRCode.Location = new System.Drawing.Point(31, 202);
-            this.txtQRCode.Name = "txtQRCode";
-            this.txtQRCode.Size = new System.Drawing.Size(242, 25);
-            this.txtQRCode.TabIndex = 81;
-            this.txtQRCode.Text = "                                              ";
+            this.btnSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(169)))), ((int)(((byte)(184)))));
+            this.btnSet.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSet.BackgroundImage")));
+            this.btnSet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSet.FlatAppearance.BorderSize = 0;
+            this.btnSet.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(154)))), ((int)(((byte)(184)))));
+            this.btnSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSet.Location = new System.Drawing.Point(184, 1);
+            this.btnSet.Name = "btnSet";
+            this.btnSet.Size = new System.Drawing.Size(18, 22);
+            this.btnSet.TabIndex = 90;
+            this.btnSet.UseVisualStyleBackColor = false;
+            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
             // 
             // BtnPostSales
             // 
-            this.BtnPostSales.Activecolor = System.Drawing.SystemColors.Menu;
+            this.BtnPostSales.Active = false;
+            this.BtnPostSales.Activecolor = System.Drawing.SystemColors.ActiveCaption;
             this.BtnPostSales.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.BtnPostSales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
+            this.BtnPostSales.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnPostSales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(154)))), ((int)(((byte)(184)))));
             this.BtnPostSales.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnPostSales.BorderRadius = 5;
             this.BtnPostSales.ButtonText = "Post Sales";
             this.BtnPostSales.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnPostSales.DisabledColor = System.Drawing.Color.Gray;
             this.BtnPostSales.Font = new System.Drawing.Font("Segoe UI Semibold", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPostSales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
+            this.BtnPostSales.ForeColor = System.Drawing.Color.White;
             this.BtnPostSales.Iconcolor = System.Drawing.Color.Transparent;
             this.BtnPostSales.Iconimage = null;
             this.BtnPostSales.Iconimage_right = null;
@@ -490,17 +340,17 @@
             this.BtnPostSales.IconMarginRight = 0;
             this.BtnPostSales.IconRightVisible = false;
             this.BtnPostSales.IconRightZoom = 0D;
-            this.BtnPostSales.IconVisible = true;
-            this.BtnPostSales.IconZoom = 40D;
+            this.BtnPostSales.IconVisible = false;
+            this.BtnPostSales.IconZoom = 0D;
             this.BtnPostSales.IsTab = false;
-            this.BtnPostSales.Location = new System.Drawing.Point(1095, 584);
+            this.BtnPostSales.Location = new System.Drawing.Point(-4, 521);
             this.BtnPostSales.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.BtnPostSales.Name = "BtnPostSales";
-            this.BtnPostSales.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
-            this.BtnPostSales.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(241)))), ((int)(((byte)(189)))));
-            this.BtnPostSales.OnHoverTextColor = System.Drawing.Color.Black;
+            this.BtnPostSales.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(154)))), ((int)(((byte)(184)))));
+            this.BtnPostSales.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.BtnPostSales.OnHoverTextColor = System.Drawing.Color.White;
             this.BtnPostSales.selected = false;
-            this.BtnPostSales.Size = new System.Drawing.Size(112, 34);
+            this.BtnPostSales.Size = new System.Drawing.Size(183, 59);
             this.BtnPostSales.TabIndex = 82;
             this.BtnPostSales.Text = "Post Sales";
             this.BtnPostSales.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -508,18 +358,43 @@
             this.BtnPostSales.TextFont = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPostSales.Click += new System.EventHandler(this.BtnPostSales_Click);
             // 
+            // ConnectBtn
+            // 
+            this.ConnectBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(154)))), ((int)(((byte)(184)))));
+            this.ConnectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ConnectBtn.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ConnectBtn.ForeColor = System.Drawing.Color.White;
+            this.ConnectBtn.Location = new System.Drawing.Point(21, 197);
+            this.ConnectBtn.Name = "ConnectBtn";
+            this.ConnectBtn.Size = new System.Drawing.Size(172, 42);
+            this.ConnectBtn.TabIndex = 91;
+            this.ConnectBtn.Text = "Connect to QB POS";
+            this.ConnectBtn.UseVisualStyleBackColor = false;
+            this.ConnectBtn.Click += new System.EventHandler(this.ConnectBtn_Click);
+            // 
+            // txtQRCode
+            // 
+            this.txtQRCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtQRCode.AutoSize = true;
+            this.txtQRCode.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQRCode.Location = new System.Drawing.Point(41, 180);
+            this.txtQRCode.Name = "txtQRCode";
+            this.txtQRCode.Size = new System.Drawing.Size(182, 21);
+            this.txtQRCode.TabIndex = 81;
+            this.txtQRCode.Text = "                                           ";
+            // 
             // scANvERITFY
             // 
-            this.scANvERITFY.Activecolor = System.Drawing.SystemColors.Menu;
-            this.scANvERITFY.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.scANvERITFY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
+            this.scANvERITFY.Active = false;
+            this.scANvERITFY.Activecolor = System.Drawing.SystemColors.ActiveCaption;
+            this.scANvERITFY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(154)))), ((int)(((byte)(184)))));
             this.scANvERITFY.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.scANvERITFY.BorderRadius = 5;
             this.scANvERITFY.ButtonText = "Verify Item";
             this.scANvERITFY.Cursor = System.Windows.Forms.Cursors.Hand;
             this.scANvERITFY.DisabledColor = System.Drawing.Color.Gray;
             this.scANvERITFY.Font = new System.Drawing.Font("Segoe UI Semibold", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scANvERITFY.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
+            this.scANvERITFY.ForeColor = System.Drawing.Color.White;
             this.scANvERITFY.Iconcolor = System.Drawing.Color.Transparent;
             this.scANvERITFY.Iconimage = null;
             this.scANvERITFY.Iconimage_right = null;
@@ -532,14 +407,14 @@
             this.scANvERITFY.IconVisible = true;
             this.scANvERITFY.IconZoom = 40D;
             this.scANvERITFY.IsTab = false;
-            this.scANvERITFY.Location = new System.Drawing.Point(955, 267);
+            this.scANvERITFY.Location = new System.Drawing.Point(202, 228);
             this.scANvERITFY.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.scANvERITFY.Name = "scANvERITFY";
-            this.scANvERITFY.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
-            this.scANvERITFY.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(241)))), ((int)(((byte)(189)))));
-            this.scANvERITFY.OnHoverTextColor = System.Drawing.Color.Black;
+            this.scANvERITFY.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(154)))), ((int)(((byte)(184)))));
+            this.scANvERITFY.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.scANvERITFY.OnHoverTextColor = System.Drawing.Color.White;
             this.scANvERITFY.selected = false;
-            this.scANvERITFY.Size = new System.Drawing.Size(134, 34);
+            this.scANvERITFY.Size = new System.Drawing.Size(131, 36);
             this.scANvERITFY.TabIndex = 83;
             this.scANvERITFY.Text = "Verify Item";
             this.scANvERITFY.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -549,112 +424,157 @@
             // 
             // labNotFound
             // 
-            this.labNotFound.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labNotFound.AutoSize = true;
-            this.labNotFound.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labNotFound.ForeColor = System.Drawing.Color.Red;
-            this.labNotFound.Location = new System.Drawing.Point(454, 669);
+            this.labNotFound.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labNotFound.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(21)))), ((int)(((byte)(28)))));
+            this.labNotFound.Location = new System.Drawing.Point(414, 223);
             this.labNotFound.Name = "labNotFound";
-            this.labNotFound.Size = new System.Drawing.Size(383, 37);
+            this.labNotFound.Size = new System.Drawing.Size(285, 28);
             this.labNotFound.TabIndex = 84;
             this.labNotFound.Text = "Item is not part of transaction";
             this.labNotFound.Visible = false;
             // 
             // BarcodeInput1
             // 
-            this.BarcodeInput1.Location = new System.Drawing.Point(1095, 385);
+            this.BarcodeInput1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarcodeInput1.Location = new System.Drawing.Point(347, 21);
+            this.BarcodeInput1.Multiline = true;
             this.BarcodeInput1.Name = "BarcodeInput1";
-            this.BarcodeInput1.Size = new System.Drawing.Size(172, 20);
+            this.BarcodeInput1.Size = new System.Drawing.Size(383, 29);
             this.BarcodeInput1.TabIndex = 85;
             this.BarcodeInput1.Tag = "1";
             // 
             // BarcodeInput2
             // 
-            this.BarcodeInput2.Location = new System.Drawing.Point(1095, 421);
+            this.BarcodeInput2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarcodeInput2.Location = new System.Drawing.Point(347, 53);
             this.BarcodeInput2.Name = "BarcodeInput2";
-            this.BarcodeInput2.Size = new System.Drawing.Size(172, 20);
+            this.BarcodeInput2.Size = new System.Drawing.Size(383, 22);
             this.BarcodeInput2.TabIndex = 86;
             this.BarcodeInput2.Tag = "2";
             // 
-            // Printbtn
-            // 
-            this.Printbtn.Activecolor = System.Drawing.SystemColors.Menu;
-            this.Printbtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.Printbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
-            this.Printbtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Printbtn.BorderRadius = 5;
-            this.Printbtn.ButtonText = "Print";
-            this.Printbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Printbtn.DisabledColor = System.Drawing.Color.Gray;
-            this.Printbtn.Font = new System.Drawing.Font("Segoe UI Semibold", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Printbtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
-            this.Printbtn.Iconcolor = System.Drawing.Color.Transparent;
-            this.Printbtn.Iconimage = null;
-            this.Printbtn.Iconimage_right = null;
-            this.Printbtn.Iconimage_right_Selected = null;
-            this.Printbtn.Iconimage_Selected = null;
-            this.Printbtn.IconMarginLeft = 0;
-            this.Printbtn.IconMarginRight = 0;
-            this.Printbtn.IconRightVisible = false;
-            this.Printbtn.IconRightZoom = 0D;
-            this.Printbtn.IconVisible = true;
-            this.Printbtn.IconZoom = 40D;
-            this.Printbtn.IsTab = false;
-            this.Printbtn.Location = new System.Drawing.Point(1095, 632);
-            this.Printbtn.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
-            this.Printbtn.Name = "Printbtn";
-            this.Printbtn.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(82)))), ((int)(((byte)(35)))));
-            this.Printbtn.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(241)))), ((int)(((byte)(189)))));
-            this.Printbtn.OnHoverTextColor = System.Drawing.Color.Black;
-            this.Printbtn.selected = false;
-            this.Printbtn.Size = new System.Drawing.Size(112, 34);
-            this.Printbtn.TabIndex = 87;
-            this.Printbtn.Text = "Print";
-            this.Printbtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Printbtn.Textcolor = System.Drawing.Color.White;
-            this.Printbtn.TextFont = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Printbtn.Click += new System.EventHandler(this.Printbtn_Click);
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.pictureBox);
             this.groupBox1.Controls.Add(this.txtQRCode);
-            this.groupBox1.Location = new System.Drawing.Point(515, 58);
+            this.groupBox1.Controls.Add(this.pictureBox);
+            this.groupBox1.Location = new System.Drawing.Point(54, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(299, 236);
+            this.groupBox1.Size = new System.Drawing.Size(277, 210);
             this.groupBox1.TabIndex = 88;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "JumpQ Barcode";
             // 
+            // pictureBox
+            // 
+            this.pictureBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureBox.BackgroundImage = global::JumpQ_TestApp.Properties.Resources.QR_Code;
+            this.pictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox.Location = new System.Drawing.Point(18, 21);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(237, 156);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 68;
+            this.pictureBox.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 15);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(47, 46);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 41;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBuzzer
+            // 
+            this.pictureBuzzer.BackColor = System.Drawing.Color.White;
+            this.pictureBuzzer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBuzzer.Location = new System.Drawing.Point(347, 77);
+            this.pictureBuzzer.Name = "pictureBuzzer";
+            this.pictureBuzzer.Size = new System.Drawing.Size(383, 144);
+            this.pictureBuzzer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBuzzer.TabIndex = 89;
+            this.pictureBuzzer.TabStop = false;
+            // 
+            // timerColor
+            // 
+            this.timerColor.Interval = 1000;
+            this.timerColor.Tick += new System.EventHandler(this.timerColor_Tick);
+            // 
+            // ManualVerification
+            // 
+            this.ManualVerification.Active = false;
+            this.ManualVerification.Activecolor = System.Drawing.SystemColors.ActiveCaption;
+            this.ManualVerification.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(154)))), ((int)(((byte)(184)))));
+            this.ManualVerification.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ManualVerification.BorderRadius = 5;
+            this.ManualVerification.ButtonText = "Verify";
+            this.ManualVerification.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ManualVerification.DisabledColor = System.Drawing.Color.Gray;
+            this.ManualVerification.Font = new System.Drawing.Font("Segoe UI Semibold", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ManualVerification.ForeColor = System.Drawing.Color.White;
+            this.ManualVerification.Iconcolor = System.Drawing.Color.Transparent;
+            this.ManualVerification.Iconimage = null;
+            this.ManualVerification.Iconimage_right = null;
+            this.ManualVerification.Iconimage_right_Selected = null;
+            this.ManualVerification.Iconimage_Selected = null;
+            this.ManualVerification.IconMarginLeft = 0;
+            this.ManualVerification.IconMarginRight = 0;
+            this.ManualVerification.IconRightVisible = false;
+            this.ManualVerification.IconRightZoom = 0D;
+            this.ManualVerification.IconVisible = false;
+            this.ManualVerification.IconZoom = 0D;
+            this.ManualVerification.IsTab = false;
+            this.ManualVerification.Location = new System.Drawing.Point(739, 22);
+            this.ManualVerification.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.ManualVerification.Name = "ManualVerification";
+            this.ManualVerification.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(154)))), ((int)(((byte)(184)))));
+            this.ManualVerification.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.ManualVerification.OnHoverTextColor = System.Drawing.Color.White;
+            this.ManualVerification.selected = false;
+            this.ManualVerification.Size = new System.Drawing.Size(77, 52);
+            this.ManualVerification.TabIndex = 90;
+            this.ManualVerification.Text = "Verify";
+            this.ManualVerification.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ManualVerification.Textcolor = System.Drawing.Color.White;
+            this.ManualVerification.TextFont = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ManualVerification.Click += new System.EventHandler(this.ManualVerification_Click);
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1279, 725);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1119, 600);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.ManualVerification);
+            this.Controls.Add(this.pictureBuzzer);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.Printbtn);
+            this.Controls.Add(this.scanBtn);
             this.Controls.Add(this.BarcodeInput2);
+            this.Controls.Add(this.scANvERITFY);
             this.Controls.Add(this.BarcodeInput1);
             this.Controls.Add(this.labNotFound);
-            this.Controls.Add(this.scANvERITFY);
-            this.Controls.Add(this.BtnPostSales);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.bunifuGradientPanel1);
-            this.Controls.Add(this.scanBtn);
             this.Controls.Add(this.grvData);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AddSalesItem";
+            this.Text = "JumpQ Konnect";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddSalesItem_FormClosing);
             this.Load += new System.EventHandler(this.AddSalesItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grvData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
-            this.bunifuGradientPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBuzzer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -669,18 +589,23 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.ComboBox cameraTypes;
         private System.Windows.Forms.Timer timer1;
-        private Bunifu.Framework.UI.BunifuGradientPanel bunifuGradientPanel1;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnHelp;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnSet;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnClose;
-        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton ConnectBtn;
+
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label txtQRCode;
         private Bunifu.Framework.UI.BunifuFlatButton BtnPostSales;
         private Bunifu.Framework.UI.BunifuFlatButton scANvERITFY;
+        private System.Windows.Forms.Label labNotFound;
+        private System.Windows.Forms.TextBox BarcodeInput1;
+        private System.Windows.Forms.TextBox BarcodeInput2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBuzzer;
+        private System.Windows.Forms.Timer timerColor;
+        private System.Windows.Forms.Button ConnectBtn;
+        private System.Windows.Forms.Button btnSet;
+        private Bunifu.Framework.UI.BunifuFlatButton ManualVerification;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -690,11 +615,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.Label labNotFound;
-        private System.Windows.Forms.TextBox BarcodeInput1;
-        private System.Windows.Forms.TextBox BarcodeInput2;
-        private Bunifu.Framework.UI.BunifuFlatButton BtnPrint;
-        private Bunifu.Framework.UI.BunifuFlatButton Printbtn;
-        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

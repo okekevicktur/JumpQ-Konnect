@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,9 +19,14 @@ namespace JumpQ_TestApp
         public Login()
         {
             InitializeComponent();
+            if (jumpQ == null)
+                jumpQ = new JumpQ_Task.Form1();
+           // 
+           // Thread.Sleep(3000);
         }
         SettingsModel settingsModel = new SettingsModel();
         APIRoute apiroute = new APIRoute();
+        public JumpQ_Task.Form1 jumpQ = new JumpQ_Task.Form1();
         private void BtnLogin_Click(object sender, EventArgs e)
         {
             try
@@ -28,6 +35,7 @@ namespace JumpQ_TestApp
                 {
                     if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                     {
+                       
                         LoginApiCall();
 
                         return;
@@ -43,10 +51,10 @@ namespace JumpQ_TestApp
                     MessageBox.Show("Your login details is needed", "JumpQ Konnect!");
                 }
             }
-            catch (Exception ex)
+            catch 
             {
 
-                MessageBox.Show(ex.Message); ;
+                MessageBox.Show("Error Logging in", "JumpQ Konnect!"); 
             }
         }
 
@@ -90,15 +98,73 @@ namespace JumpQ_TestApp
                 MessageBox.Show(ex.Message);
             }
         }
+        
         public void saveSettings()
         {
          
             Properties.Settings.Default.ApiToken = settingsModel.Token;
             Properties.Settings.Default.Username = settingsModel.Username;
             Properties.Settings.Default.Password = settingsModel.Password;
+            Properties.Settings.Default.Cashier = settingsModel.Username;
             Properties.Settings.Default.Save();
         }
 
         #endregion
+
+        private void ChkRemember_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkRemember.Checked == true)
+            {
+                Properties.Settings.Default.Password = TxtPassword.Text;
+                Properties.Settings.Default.Username = TxtUsername.Text;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.Password = string.Empty;
+                Properties.Settings.Default.Username = string.Empty;
+                Properties.Settings.Default.Save();
+            }
+        }
+     
+        private void Login_Load(object sender, EventArgs e)
+        {
+          
+            
+
+            TxtPassword.Text= Properties.Settings.Default.Password ;
+            TxtUsername.Text= Properties.Settings.Default.Username ;
+            if (TxtPassword.Text != string.Empty && TxtUsername.Text != string.Empty)
+            {
+                ChkRemember.Checked = true;
+            }
+            else
+            {
+                ChkRemember.Checked = false;
+            }
+             // Process.Start(jumpQ.returnPath() + "\\JumpQ_Task.exe");
+            //Process.Start()
+
+            //var thread = new Thread(() =>
+            //{
+            Thread.Sleep(1000);
+            jumpQ.Show();
+
+            //});
+            //thread.Start();
+          
+        }
+
+        public void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+        }
+
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (jumpQ != null)
+            jumpQ.Close();
+        }
+
+    
     }
 }

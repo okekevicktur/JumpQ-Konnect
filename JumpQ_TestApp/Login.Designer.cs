@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.StateProperties();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.StateProperties();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnLogin = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.ChkRemember = new System.Windows.Forms.CheckBox();
@@ -59,9 +59,11 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(359, 449);
             this.panel1.TabIndex = 0;
+            
             // 
             // BtnLogin
             // 
+
             this.BtnLogin.BackColor = System.Drawing.Color.Transparent;
             this.BtnLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnLogin.BackgroundImage")));
             this.BtnLogin.ButtonText = "Login";
@@ -82,13 +84,13 @@
             this.BtnLogin.IdleIconRightImage = null;
             this.BtnLogin.Location = new System.Drawing.Point(256, 295);
             this.BtnLogin.Name = "BtnLogin";
-            stateProperties2.BorderColor = System.Drawing.Color.Gray;
-            stateProperties2.BorderRadius = 1;
-            stateProperties2.BorderThickness = 1;
-            stateProperties2.FillColor = System.Drawing.Color.Gainsboro;
-            stateProperties2.IconLeftImage = null;
-            stateProperties2.IconRightImage = null;
-            this.BtnLogin.onHoverState = stateProperties2;
+            stateProperties1.BorderColor = System.Drawing.Color.Gray;
+            stateProperties1.BorderRadius = 1;
+            stateProperties1.BorderThickness = 1;
+            stateProperties1.FillColor = System.Drawing.Color.Gainsboro;
+            stateProperties1.IconLeftImage = null;
+            stateProperties1.IconRightImage = null;
+            this.BtnLogin.onHoverState = stateProperties1;
             this.BtnLogin.Size = new System.Drawing.Size(77, 33);
             this.BtnLogin.TabIndex = 0;
             this.BtnLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -105,6 +107,7 @@
             this.ChkRemember.TabIndex = 5;
             this.ChkRemember.Text = "Remember me";
             this.ChkRemember.UseVisualStyleBackColor = true;
+            this.ChkRemember.CheckedChanged += new System.EventHandler(this.ChkRemember_CheckedChanged);
             // 
             // label3
             // 
@@ -251,12 +254,16 @@
             this.ClientSize = new System.Drawing.Size(767, 449);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(783, 488);
             this.MinimumSize = new System.Drawing.Size(783, 488);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JumpQ Konnect";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
+            this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

@@ -1,0 +1,1 @@
+C:\Users\piedTech\Documents\Visual Studio 2013\Projects\JumpQ_TestApp\JumpQ_TestApp\obj\x86\Release\Interop.QBPOSFC4Lib.dll
